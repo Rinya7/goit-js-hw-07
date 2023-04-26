@@ -5,19 +5,15 @@ console.log(galleryItems);
 
 const galeryList = document.querySelector(".gallery");
 galeryList.addEventListener("click", callback);
-function callback(event) {
-  console.log(event.target.dataset.source);
-  //  return event.target.daraset.sourse
-}
 
-console.log(galeryList);
+//console.log(galeryList);
 
 function galeryImagesPreviewHtml(elements) {
   return elements
     .map(
       (element) =>
         `  <li class="gallery__item">
-                <a class="gallery__link" href=${element.original} target="_self">
+                <a class="gallery__link" href=#${element.original}>
                     <img
                     class="gallery__image"
                     src=${element.preview}
@@ -32,3 +28,17 @@ function galeryImagesPreviewHtml(elements) {
 
 //const galeryPreviewHtml = galeryImagesPreviewHtml(galleryItems);
 galeryList.innerHTML = galeryImagesPreviewHtml(galleryItems);
+
+//=============================================================
+function callback(event) {
+  basicLightbox
+    .create(
+      ` <img
+      class="gallery__image"
+      src=${event.target.dataset.source}
+      data-source=${event.target.dataset.source}
+      alt=${event.target.alt}
+      />`
+    )
+    .show();
+}
